@@ -44,6 +44,11 @@ export function pullImage(celebrity) {
   let imageLink = famousPeople.find((c) => c.name == celebrity);
   return imageLink.image;
 }
+//function to get celebrity description
+export function celebDescription(celebrity) {
+  let describeCeleb = famousPeople.find((c) => c.name == celebrity);
+  return describeCeleb.description;
+}
 
 //compare function of net worth of both celebs.
 export function compare(totalMoneyA, totalMoneyB) {
@@ -133,13 +138,23 @@ export async function levelOne() {
       continue;
     }
 
+    //Celeb A description
+    let descriptionA = celebDescription(celebrityA);
+
+    //celeb B description
+    let descriptionB = celebDescription(celebrityB);
+
     //Celebrity A
-    console.log(`Celebrity A: `, chalk.red(celebrityA));
+    console.log(
+      `Celebrity A: ${chalk.red(celebrityA)}, ${chalk.blue(descriptionA)} `
+    );
     const bodyA = await got(pullImage(celebrityA)).buffer();
     console.log(await terminalImage.buffer(bodyA, { width: "20%" }));
 
     //Celebrity B
-    console.log(`Celebrity B: `, chalk.green(celebrityB));
+    console.log(
+      `Celebrity B:  ${chalk.green(celebrityB)}, ${chalk.blue(descriptionB)} `
+    );
     const bodyB = await got(pullImage(celebrityB)).buffer();
     console.log(await terminalImage.buffer(bodyB, { width: "20%" }));
 

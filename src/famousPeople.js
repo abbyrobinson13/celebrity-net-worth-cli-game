@@ -2,7 +2,7 @@
 export const famousPeople = [
   {
     name: "Harry Styles",
-    description: "Singer, songwriter, and actor",
+    description: "Singer, Songwriter, and Actor",
     numberWorth: 1.0e8,
     netWorth: "$100 million",
     image:
@@ -127,7 +127,7 @@ export const famousPeople = [
   },
   {
     name: "George Clooney",
-    description: "American Country Singer",
+    description: "American Actor",
     numberWorth: 5.0e8,
     netWorth: "$500 million",
     image: "https://thumbs.dreamstime.com/b/george-clooney-26355382.jpg",
@@ -158,7 +158,7 @@ export const famousPeople = [
   },
   {
     name: "Jeff Bezos",
-    description: "American Country Singer",
+    description: "CEO of Amazon",
     numberWorth: 1.4e11,
     netWorth: "$144 billion",
     image:
@@ -222,7 +222,7 @@ export const famousPeople = [
   },
   {
     name: "Kylie Jenner",
-    description: "American sociality and owner of Kylie Cosmetics",
+    description: "American Socialite and Owner of Kylie Cosmetics",
     numberWorth: 7.5e8,
     netWorth: "$750 million",
     image:
@@ -262,7 +262,7 @@ export const famousPeople = [
   },
   {
     name: "Martha Stewart",
-    description: "Cooking guru",
+    description: "Cooking Guru",
     numberWorth: 2.0e8,
     netWorth: "$200 Million",
     image:
@@ -286,7 +286,7 @@ export const famousPeople = [
   },
   {
     name: "Snoop Dogg",
-    description: "American TV Host",
+    description: "American Rapper",
     numberWorth: 1.5e8,
     netWorth: "$150 Million",
     image:
