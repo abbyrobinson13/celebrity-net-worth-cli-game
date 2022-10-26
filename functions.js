@@ -75,14 +75,29 @@ export async function levelTwo() {
   console.log("Congratulations! You have made it to level 2.");
   console.log("You now have to pick between 3 celebrity net worths");
   while (gamePlay == true) {
-    let celebrityA = getRandomCelebrity(famousPeople);
-    let celebrityB = getRandomCelebrity(famousPeople);
-    let celebrityC = getRandomCelebrity(famousPeople);
+    const response = await fetch("http://localhost:3000/");
+    const data = await response.json();
+    let celebrityA = data[0];
+    let celebrityB = data[1];
+    let celebrityC = data[2];
+
+    if (
+      celebrityA == celebrityB ||
+      celebrityA == celebrityC ||
+      celebrityB == celebrityC
+    ) {
+      continue;
+    }
 
     // get the net worth of both celebrities.
     let celebANumber = pullNumberWorth(celebrityA);
     let celebBNumber = pullNumberWorth(celebrityB);
     let celebCNumber = pullNumberWorth(celebrityC);
+
+    // celeb descriptions
+    let descriptionA = celebDescription(celebrityA);
+    let descriptionB = celebDescription(celebrityB);
+    let descriptionC = celebDescription(celebrityC);
 
     let compareCelebrities = compareThree(
       celebANumber,
@@ -90,9 +105,17 @@ export async function levelTwo() {
       celebCNumber
     );
 
-    console.log("Celebrity A: ", celebrityA);
-    console.log("Celebrity B: ", celebrityB);
-    console.log("Celebrity C: ", celebrityC);
+    console.log(`Celebrity A: , ${celebrityA}, ${descriptionA}`);
+    const bodyA = await got(pullImage(celebrityA)).buffer();
+    console.log(await terminalImage.buffer(bodyA, { width: "20%" }));
+
+    console.log(`Celebrity B:  ${celebrityB}, ${descriptionB}`);
+    const bodyB = await got(pullImage(celebrityB)).buffer();
+    console.log(await terminalImage.buffer(bodyB, { width: "20%" }));
+
+    console.log(`Celebrity C:  ${celebrityC}, ${descriptionC}`);
+    const bodyC = await got(pullImage(celebrityC)).buffer();
+    console.log(await terminalImage.buffer(bodyC, { width: "20%" }));
 
     let guess = rl.question(
       "Who do you think has the higher net worth. A, B, or C?: "

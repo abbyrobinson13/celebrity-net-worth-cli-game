@@ -12,7 +12,8 @@ const PORT = 3000;
 app.get("/", (req, res) => {
   let celebrityA = getRandomCelebrity(famousPeople);
   let celebrityB = getRandomCelebrity(famousPeople);
-  let celebArray = [celebrityA, celebrityB];
+  let celebrityC = getRandomCelebrity(famousPeople);
+  let celebArray = [celebrityA, celebrityB, celebrityC];
   res.send(celebArray);
 });
 
