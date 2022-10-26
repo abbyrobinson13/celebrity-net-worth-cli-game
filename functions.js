@@ -1,5 +1,5 @@
 import rl from "readline-sync";
-import { famousPeople } from "./famousPeople.js";
+import { famousPeople } from "./src/famousPeople.js";
 //import { getRandomCelebrity } from "./getRandomCelebrity.js";
 import terminalImage from "terminal-image";
 import got from "got";

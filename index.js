@@ -1,6 +1,4 @@
-import cfonts from "cfonts";
-import rl from "readline-sync";
-import { levelOne } from "./levelOne.js";
+import { levelOne } from "./functions.js";
 import chalkAnimation from "chalk-animation";
 import chalk from "chalk";
 
