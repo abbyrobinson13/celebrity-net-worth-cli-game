@@ -15,12 +15,17 @@ export async function playAgain() {
   const response = await fetch("http://localhost:3000/scores");
   const highScore = await response.json();
   console.log(
-    `${newName} - Your current high score is : ${highScore[newName]}`
+    `${chalk.yellow(newName)} - Your current high score is : ${
+      highScore[newName]
+    }`
   );
   let playAgain = rl.question("Would you like to try and beat it? Y or N: ");
   if (playAgain === "Y" || playAgain === "y") {
+    console.clear();
     let newPlayer = rl.question(
-      `Would you like to still play as ${newName}, or are you a new player?: 'Y' to continue, 'N' for new player : `
+      `Would you like to still play as ${chalk.yellowBright(
+        newName
+      )}, or are you a new player?: 'Y' to continue, 'N' for new player : `
     );
     if (newPlayer.toUpperCase() === "Y") {
       score = 0;
@@ -72,8 +77,11 @@ export function compareThree(totalMoneyA, totalMoneyB, totalMoneyC) {
 //let newName = rl.question("Welcome! Enter your name: ");
 export async function levelTwo() {
   let score = 10;
-  console.log("Congratulations! You have made it to level 2.");
+  console.log(
+    `Congratulations ${chalk.yellow(newName)}! You have made it to level 2.`
+  );
   console.log("You now have to pick between 3 celebrity net worths");
+  rl.question("When you are ready press enter: ");
   while (gamePlay == true) {
     const response = await fetch("http://localhost:3000/");
     const data = await response.json();
@@ -109,35 +117,38 @@ export async function levelTwo() {
       `Celebrity A: , ${chalk.red(celebrityA)}, ${chalk.blue(descriptionA)}`
     );
     const bodyA = await got(pullImage(celebrityA)).buffer();
-    console.log(await terminalImage.buffer(bodyA, { width: "20%" }));
+    console.log(await terminalImage.buffer(bodyA, { width: "10%" }));
 
     console.log(
       `Celebrity B:  ${chalk.green(celebrityB)}, ${chalk.blue(descriptionB)}`
     );
     const bodyB = await got(pullImage(celebrityB)).buffer();
-    console.log(await terminalImage.buffer(bodyB, { width: "20%" }));
+    console.log(await terminalImage.buffer(bodyB, { width: "10%" }));
 
     console.log(
-      `Celebrity C:  ${chalk.orange(celebrityC)}, ${chalk.blue(descriptionC)}`
+      `Celebrity C:  ${chalk.yellow(celebrityC)}, ${chalk.blue(descriptionC)}`
     );
     const bodyC = await got(pullImage(celebrityC)).buffer();
-    console.log(await terminalImage.buffer(bodyC, { width: "20%" }));
+    console.log(await terminalImage.buffer(bodyC, { width: "10%" }));
 
     let guess = rl.question(
       "Who do you think has the higher net worth. A, B, or C?: "
     );
     let finalGuess = guess.toUpperCase();
 
-    console.log("The correct answer is", compare(celebANumber, celebBNumber));
+    console.log(
+      "The correct answer is",
+      compare(celebANumber, celebBNumber, celebCNumber)
+    );
 
     if (finalGuess === compareCelebrities) {
       console.log("You are correct!");
       score += 1;
       console.log("Your current score is: ", score);
       console.log("\n");
+      rl.question("Are you ready for the next question? Press enter: ");
       console.log("---------------------");
       console.log("\n");
-      celebrityA = celebrityB;
     } else {
       console.log("Sorry that is incorrect :( ");
       console.log("Game over 😭😭. Your final score is ", score);
@@ -178,14 +189,14 @@ export async function levelOne() {
       `Celebrity A: ${chalk.red(celebrityA)}, ${chalk.blue(descriptionA)} `
     );
     const bodyA = await got(pullImage(celebrityA)).buffer();
-    console.log(await terminalImage.buffer(bodyA, { width: "20%" }));
+    console.log(await terminalImage.buffer(bodyA, { width: "15%" }));
 
     //Celebrity B
     console.log(
       `Celebrity B:  ${chalk.green(celebrityB)}, ${chalk.blue(descriptionB)} `
     );
     const bodyB = await got(pullImage(celebrityB)).buffer();
-    console.log(await terminalImage.buffer(bodyB, { width: "20%" }));
+    console.log(await terminalImage.buffer(bodyB, { width: "15%" }));
 
     // get the net worth of both celebrities.
     let celebANumber = pullNumberWorth(celebrityA);
@@ -220,8 +231,12 @@ export async function levelOne() {
         break;
       }
     } else {
+      console.clear();
       console.log("\nSorry that is incorrect :( ");
-      console.log("Game over 💀💀. Your final score is ", score);
+      console.log(
+        `${chalk.red("Game over")} 💀💀. Your final score is `,
+        score
+      );
 
       const response = await fetch("http://localhost:3000/", {
         method: "post",
