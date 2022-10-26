@@ -105,15 +105,21 @@ export async function levelTwo() {
       celebCNumber
     );
 
-    console.log(`Celebrity A: , ${celebrityA}, ${descriptionA}`);
+    console.log(
+      `Celebrity A: , ${chalk.red(celebrityA)}, ${chalk.blue(descriptionA)}`
+    );
     const bodyA = await got(pullImage(celebrityA)).buffer();
     console.log(await terminalImage.buffer(bodyA, { width: "20%" }));
 
-    console.log(`Celebrity B:  ${celebrityB}, ${descriptionB}`);
+    console.log(
+      `Celebrity B:  ${chalk.green(celebrityB)}, ${chalk.blue(descriptionB)}`
+    );
     const bodyB = await got(pullImage(celebrityB)).buffer();
     console.log(await terminalImage.buffer(bodyB, { width: "20%" }));
 
-    console.log(`Celebrity C:  ${celebrityC}, ${descriptionC}`);
+    console.log(
+      `Celebrity C:  ${chalk.orange(celebrityC)}, ${chalk.blue(descriptionC)}`
+    );
     const bodyC = await got(pullImage(celebrityC)).buffer();
     console.log(await terminalImage.buffer(bodyC, { width: "20%" }));
 
